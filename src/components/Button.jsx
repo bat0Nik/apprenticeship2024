@@ -2,9 +2,10 @@ import React from 'react'
 
 const Button = ({text}) => {
   return (
-    <Button>
+    <button>
         {text}
-    </Button>
+        
+    </button>
   )
 }
 
