@@ -1,8 +1,11 @@
+import Header from "./components/Header";
+import AppContainer from "./components/AppContainer";
 
 function App() {
   return (
     <div className="App">
-      <h1>proba</h1>
+      <Header/>
+      <AppContainer/>
     </div>
   );
 }
