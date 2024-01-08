@@ -29,3 +29,8 @@ body{
     align-items: center;
     justify-content: space-around;
 }
+.modeTopBar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
