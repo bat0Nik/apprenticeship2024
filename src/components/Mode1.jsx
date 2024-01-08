@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import ModeInputs from "./ModeInputs";
 
 const Mode1 = () => {
   return (
@@ -8,9 +8,7 @@ const Mode1 = () => {
         <Link to="/modes">Cofnij</Link>
         <div>0/50</div>
       </div>
-      <input type="number" />
-      <input type="number" />
-      <input type="number" />
+      <ModeInputs />
       <button>Sprawdź</button>
     </div>
   );

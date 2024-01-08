@@ -29,8 +29,16 @@ body{
     align-items: center;
     justify-content: space-around;
 }
-.modeTopBar{
+.mode-top-bar{
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+.input-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.input-container input{
+    width: 20%;
 }

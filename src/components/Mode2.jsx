@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
+import ModeInputs from "./ModeInputs";
 
 const Mode2 = () => {
   return (
     <div>
-      <div className="modeTopBar">
+      <div className="mode-top-bar">
         <Link to="/modes">Cofnij</Link>
         <div>3zycia</div>
       </div>
-      <input type="number" />
-      <input type="number" />
-      <input type="number" />
+      <ModeInputs />
       <button>Sprawdź</button>
     </div>
   );
