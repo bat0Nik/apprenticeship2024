@@ -8,7 +8,7 @@ const Modes = () => {
 
   const handleMouseEnterButton1 = () => {
     setIsButton1Hovered(true);
-    setDescription("tryb 50 punktów");
+    setDescription("Tryb polega na zebraniu 50pkt wykonując działania matematyczne.\n Zasady:\n 1. Punkt dostajesz za dobrze wykonane działanie, a za złe tracisz jeden punkt.\n 2. Z dalszym ciągiem punktowym działania zyskują na trudności i są coraz trudniejsze.\n");
   };
 
   const handleMouseLeaveButton1 = () => {
@@ -17,7 +17,7 @@ const Modes = () => {
 
   const handleMouseEnterButton2 = () => {
     setIsButton2Hovered(true);
-    setDescription("tryb 3 życia");
+    setDescription("Tryb polega na ciągłym wykonywaniu poprawie działań matematycznym ma się tylko 3 życia po ich utracie przegrywasz. Każde działanie to następny LEVEL");
   };
 
   const handleMouseLeaveButton2 = () => {
@@ -33,7 +33,7 @@ const Modes = () => {
         onMouseEnter={handleMouseEnterButton1}
         onMouseLeave={handleMouseLeaveButton1}
       >
-        50pkt
+        Zbierz 50 punktów
       </Link>
       <Link
         to="/modes/mode2"
