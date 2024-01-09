@@ -8,7 +8,7 @@ const ModeInputs = () => {
   const [userInput, setUserInput] = useState("");
   const [expectedResult, setExpectedResult] = useState(0);
   const [message, setMessage] = useState("");
-  const [level, setLevel] = useState(12);
+  const [level, setLevel] = useState(1);
   const [showPopUp, setShowPopUp] = useState(false);
 
   useEffect(() => {
