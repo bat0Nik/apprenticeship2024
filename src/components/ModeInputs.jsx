@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import PopUp from "./PopUp";
 
 const ModeInputs = () => {
-<<<<<<< HEAD
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(0);
   const [operation, setOperation] = useState("");
@@ -54,9 +53,6 @@ const ModeInputs = () => {
     setShowPopUp(true);
     generateNumbers();
   };
-
-=======
->>>>>>> 15ed43e3212bfaaf776aeb9c80278bce7e65f0e6
   return (
     <div>
       <h1>Level {level}</h1>
