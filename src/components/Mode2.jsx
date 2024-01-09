@@ -9,7 +9,6 @@ const Mode2 = () => {
         <div>3zycia</div>
       </div>
       <ModeInputs />
-      <button>Sprawdź</button>
     </div>
   );
 };

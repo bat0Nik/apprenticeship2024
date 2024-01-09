@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import logo from "../images/logoMathGAME.png";
 
 const Menu = () => {
   return (
     <div className="menu-container">
-      <h1>MathGAME</h1>
-      <Link to="/modes">Graj</Link>
+      <img src={logo} alt="logo" />
+      <Link to="/modes">GRAJ</Link>
     </div>
   );
 };

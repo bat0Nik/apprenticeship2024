@@ -9,7 +9,6 @@ const Mode1 = () => {
         <div>0/50</div>
       </div>
       <ModeInputs />
-      <button>Sprawdź</button>
     </div>
   );
 };

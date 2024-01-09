@@ -8,7 +8,9 @@ const Modes = () => {
 
   const handleMouseEnterButton1 = () => {
     setIsButton1Hovered(true);
-    setDescription("Tryb polega na zebraniu 50pkt wykonując działania matematyczne.\n Zasady:\n 1. Punkt dostajesz za dobrze wykonane działanie, a za złe tracisz jeden punkt.\n 2. Z dalszym ciągiem punktowym działania zyskują na trudności i są coraz trudniejsze.\n");
+    setDescription(
+      "Tryb polega na zebraniu 50pkt wykonujac dzialania matematyczne. Punkty dostajesz za dobrze wykonane dzialania, a za zla odpowiedz je tracisz."
+    );
   };
 
   const handleMouseLeaveButton1 = () => {
@@ -17,7 +19,9 @@ const Modes = () => {
 
   const handleMouseEnterButton2 = () => {
     setIsButton2Hovered(true);
-    setDescription("Tryb polega na ciągłym wykonywaniu poprawie działań matematycznym ma się tylko 3 życia po ich utracie przegrywasz. Każde działanie to następny LEVEL");
+    setDescription(
+      "Tryb polega na zdobycou jak niwiekszej ilosci punktow. Posiadasz tylko 3 zycia. Za bledna odpowiedz odbieane jest jedno zycie"
+    );
   };
 
   const handleMouseLeaveButton2 = () => {
@@ -26,21 +30,21 @@ const Modes = () => {
 
   return (
     <div>
-      <Link to="/">Cofnij</Link>
-      <h1>Wybierz tryb gry</h1>
+      <Link to="/">Cofnik</Link>
+      <h1>WYBIERZ TRYB GRY</h1>
       <Link
         to="/modes/mode1"
         onMouseEnter={handleMouseEnterButton1}
         onMouseLeave={handleMouseLeaveButton1}
       >
-        Zbierz 50 punktów
+        ZBIERZ 50 PKT
       </Link>
       <Link
         to="/modes/mode2"
         onMouseEnter={handleMouseEnterButton2}
         onMouseLeave={handleMouseLeaveButton2}
       >
-        3 życia
+        3 ZYCIA
       </Link>
 
       {isButton1Hovered && <p>{description}</p>}
