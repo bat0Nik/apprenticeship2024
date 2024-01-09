@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "../images/logoMathGAME.png";
+import logo from "../images/LOGOMathGAMEv2.png";
+// import logo from "../images/logoMathGAME.png";
 
 const Menu = () => {
   return (
