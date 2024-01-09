@@ -1,5 +1,4 @@
 const ModeInputs = () => {
-  
   return (
     <div className="input-container">
       <input type="number" />
