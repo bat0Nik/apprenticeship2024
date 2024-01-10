@@ -31,10 +31,11 @@ const Modes = () => {
 
   return (
     <div className="modes-container">
-      <div className="mode-top-bar">
+      <div className="modes-top-bar">
       <Link to="/">Cofnik</Link>
       <Soundbar />
       </div>
+      <div className="modes-choose">
       <h1>WYBIERZ TRYB GRY</h1>
       <Link
         to="/modes/mode1"
@@ -55,6 +56,7 @@ const Modes = () => {
 
       {isButton1Hovered && <p>{description}</p>}
       {isButton2Hovered && <p>{description}</p>}
+    </div>
     </div>
   );
 };

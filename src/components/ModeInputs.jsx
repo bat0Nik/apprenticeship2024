@@ -66,7 +66,7 @@ const ModeInputs = () => {
         =
         <input type="number" value={userInput} onChange={handleUserInput} />
       </div>
-      <button onClick={checkResult}>Sprawdź wynik</button>
+      <button onClick={checkResult} className="check">Sprawdź wynik</button>
       {showPopUp && (
         <PopUp
           info={message}
