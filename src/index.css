@@ -53,17 +53,28 @@ a{
     width: 350px;
 }
 .mode-top-bar{
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 100px;
+    margin-top: 20px;
 }
-.input-container{
-    width: 100%;
+.inputs-container{
+    width: 80%;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 130px;
 }
-.input-container input{
-    width: 20%;
+.inputs-container .inputs-cont input,input:disabled{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 0 20px;
+    padding-left: 15px;
 }
 .pop-up-container{
     position: fixed;
@@ -84,4 +95,17 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.mode-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputs-cont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
