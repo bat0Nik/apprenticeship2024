@@ -1,46 +1,31 @@
-import React, {useState, useEffect} from 'react'
-import Gra from '../sound/gra.mp3'
+import React from 'react';
+import { useEffect } from 'react';
+import { useAudio } from './AudioContext.jsx';
+import Gra from '../sound/gra.mp3';
 
 const Soundbar = () => {
-const [audio] = useState(new Audio({Gra}));
-const [volume, setVolume] = useState(0.5);
+  const { play,volume, volumeChange } = useAudio();
 
-const play = (track) => {
-    try {
-        audio.src = track;
-        audio.play().then(() => {
-        }).catch((error) => {
-        console.error("Błąd odtwarzania dźwięku:", error);
-    });
-    } catch (error) {
-        console.error("Błąd odtwarzania dźwięku:", error);
-    }
-};
-
-const volumeChange = (e) => {
+useEffect(() => {
+    play(Gra);
+}, []);
+const volumeHandler = (e) => {
     const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    audio.volume = newVolume;
-};
+    volumeChange(newVolume);
+  };
 
-const handleButtonClick = () => {
-    play('../sound/gra.mp3');
-};
-useEffect(()=>{
-    play(Gra)
-},[])
-    return (
-    <div>      
-    <input
+  return (
+    <div>
+      <input
         type="range"
         min={0}
         max={1}
         step={0.01}
         value={volume}
-        onChange={volumeChange}
-    />
+        onChange={volumeHandler}
+      />
     </div>
-    )
-}
+  );
+};
 
-export default Soundbar
+export default Soundbar;
