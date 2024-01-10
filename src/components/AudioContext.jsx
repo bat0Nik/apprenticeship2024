@@ -11,15 +11,11 @@ export const AudioProvider = ({ children }) => {
   const [audio] = useState(new Audio(Gra));
   const [volume, setVolume] = useState(0.5);
 
-  const play = (track) => {
-    try {
-      audio.src = track;
-      audio.play(Gra).then(() => {}).catch((error) => {
-        console.error("Błąd odtwarzania dźwięku:", error);
-      });
-    } catch (error) {
+  const play = () => {
+    audio.loop = true;
+    audio.play().catch((error) => {
       console.error("Błąd odtwarzania dźwięku:", error);
-    }
+    });
   };
 
   const volumeChange = (newVolume) => {

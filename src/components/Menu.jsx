@@ -8,6 +8,7 @@ const Menu = () => {
       <img src={logo} alt="logo" />
       <Link to="/modes">GRAJ</Link>
       <Soundbar />
+      <small><i>Aby włączyć piosenkę kliknij graj a następnie cofnik!</i></small>
     </div>
   );
 };
