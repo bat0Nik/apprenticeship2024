@@ -40,15 +40,17 @@ const Modes = () => {
         to="/modes/mode1"
         onMouseEnter={handleMouseEnterButton1}
         onMouseLeave={handleMouseLeaveButton1}
+        href="#" data-tooltip="Tryb polega na zebraniu 50pkt wykonujac dzialania matematyczne. Punkty dostajesz za dobrze wykonane dzialania, a za zla odpowiedz je tracisz."
       >
-        <a href="#" data-tooltip="Jestem wyskakującą chmurką z tekstem">ZBIERZ 50 PKT</a>
+        ZBIERZ 50 PKT
       </Link>
       <Link
         to="/modes/mode2"
         onMouseEnter={handleMouseEnterButton2}
         onMouseLeave={handleMouseLeaveButton2}
+        href="#" data-tooltip="Tryb polega na zdobycou jak niwiekszej ilosci punktow. Posiadasz tylko 3 zycia. Za bledna odpowiedz odbieane jest jedno zycie"
       >
-        <a href="#" data-tooltip="Jestem wyskakującą chmurką z tekstem">3 ZYCIA</a>
+        3 ZYCIA
       </Link>
 
       {isButton1Hovered && <p>{description}</p>}

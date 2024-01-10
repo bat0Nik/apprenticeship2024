@@ -132,13 +132,15 @@ a{
   [data-tooltip]:before {
     position: absolute;
     bottom: 150%;
-    left: 50%;
+    left: 30%;
     margin-bottom: 5px;
     margin-left: -110px;
     padding: 7px;
-    width: 210px;
+    width: 310px;
     border-radius: 3px;
-    background-color: #db2b74;
+    background-color: #ff0073b7;
+    border: 5px solid #fc4095;
+    border-radius: 10px;
     color: #fff;
     content: attr(data-tooltip);
     text-align: center;
