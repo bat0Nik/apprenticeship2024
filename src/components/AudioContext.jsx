@@ -4,28 +4,28 @@ import Gra from '../sound/gra.mp3';
 const AudioContext = createContext();
 
 export const useAudio = () => {
-  return useContext(AudioContext);
+    return useContext(AudioContext);
 };
 
 export const AudioProvider = ({ children }) => {
-  const [audio] = useState(new Audio(Gra));
-  const [volume, setVolume] = useState(0.5);
+const [audio] = useState(new Audio(Gra));
+const [volume, setVolume] = useState(0.5);
 
-  const play = () => {
+const play = () => {
     audio.loop = true;
     audio.play().catch((error) => {
-      console.error("Błąd odtwarzania dźwięku:", error);
+    console.error("Błąd odtwarzania dźwięku:", error);
     });
-  };
+};
 
-  const volumeChange = (newVolume) => {
+const volumeChange = (newVolume) => {
     setVolume(newVolume);
     audio.volume = newVolume;
-  };
+};
 
-  return (
+return (
     <AudioContext.Provider value={{ audio, volume, play, volumeChange }}>
-      {children}
+    {children}
     </AudioContext.Provider>
-  );
+);
 };
