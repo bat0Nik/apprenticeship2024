@@ -55,13 +55,17 @@ const ModeInputs = () => {
   };
 
   return (
-    <div>
-      <h1>Level {level}</h1>
-      <input type="number" value={number1} disabled />
-      <p>{operation}</p>
-      <input type="number" value={number2} disabled />
-      =
-      <input type="text" value={userInput} onChange={handleUserInput} />
+    <div className="inputs-container">
+      <div className="level-bar">
+        <h1>Level {level}</h1>
+      </div>
+      <div className="inputs-cont">
+        <input type="number" value={number1} disabled />
+        <p>{operation}</p>
+        <input type="number" value={number2} disabled />
+        =
+        <input type="number" value={userInput} onChange={handleUserInput} />
+      </div>
       <button onClick={checkResult}>Sprawdź wynik</button>
       {showPopUp && (
         <PopUp

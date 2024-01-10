@@ -3,8 +3,8 @@ import ModeInputs from "./ModeInputs";
 
 const Mode1 = () => {
   return (
-    <div>
-      <div className="modeTopBar">
+    <div className="mode-container">
+      <div className="mode-top-bar">
         <Link to="/modes">Cofnij</Link>
         <div>0/50</div>
       </div>
