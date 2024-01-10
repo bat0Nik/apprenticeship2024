@@ -4,7 +4,7 @@ import { useAudio } from './AudioContext.jsx';
 import Gra from '../sound/gra.mp3';
 
 const Soundbar = () => {
-  const { play,volume, volumeChange } = useAudio();
+const { play,volume, volumeChange } = useAudio();
 
 useEffect(() => {
     play(Gra);
@@ -12,20 +12,20 @@ useEffect(() => {
 const volumeHandler = (e) => {
     const newVolume = parseFloat(e.target.value);
     volumeChange(newVolume);
-  };
+};
 
-  return (
+return (
     <div>
-      <input
+    <input
         type="range"
         min={0}
         max={1}
         step={0.01}
         value={volume}
         onChange={volumeHandler}
-      />
+    />
     </div>
-  );
+);
 };
 
 export default Soundbar;
