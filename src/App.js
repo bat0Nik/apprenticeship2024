@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Modes from "./components/Modes";
 import Mode1 from "./components/Mode1";
 import Mode2 from "./components/Mode2";
-import Soundbar from "./components/Soundbar";
 import { AudioProvider } from "./components/AudioContext";
 
 function App() {

@@ -56,8 +56,17 @@ a{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 100px;
     margin-top: 40px;
+}
+.heart-container{
+    display: flex;
+}
+.heart-container img{
+    width: 60px;
+    margin-left: 10px;
+    
 }
 .inputs-container{
     width: 80%;
@@ -75,15 +84,33 @@ a{
     margin: 0 20px;
     padding-left: 15px;
 }
-.pop-up-container{
+/* .pop-up-container{
     position: fixed;
-    width: 100px;
-    height: 100px;
-    background: white;
+    width: 200px;
+    height: 160px;
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 12px;
+    background-color: #d41d1d;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content:space-around;
     align-items: center;
+} */
+.pop-up-container button {
+    padding: 2px 80px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 400;
+    /* font-family: 'Lucida Grande'; */
+    border: 2px solid red;
+    margin-bottom: 140px;
+}
+.pop-up-container p {
+    text-align: center;
+    background-color: red;
+    color: #fff;
 }
 .back{
     position: fixed;
@@ -129,11 +156,16 @@ a{
     align-items: center;
     margin-top: 30px;
 }
-.check{
+.check {
+    text-decoration: none;
+    padding: 5px 20px;
+    background-color: #ff0072;
+    border: 5px solid #fc4095;
+    border-radius: 30px;
     color: #fff;
-    background-color: #efb7d0;
-    border: 1px solid black;
-    border-radius: 10px;
+    font-family: 'Luckiest Guy';
+    font-size: 12px;
+    letter-spacing: 2px;
 }
   
   [data-tooltip] {
@@ -158,8 +190,8 @@ a{
     padding: 7px;
     width: 310px;
     border-radius: 3px;
-    background-color: #ff0073b7;
-    border: 5px solid #fc4095;
+    background-color: #fc4095;
+    border: 5px solid #ff0073;
     border-radius: 10px;
     color: #fff;
     content: attr(data-tooltip);
