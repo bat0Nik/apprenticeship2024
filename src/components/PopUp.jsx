@@ -1,11 +1,10 @@
 import React from "react";
 
-const PopUp = ({ info, onClick, lost }) => {
+const PopUp = ({ info, onClick }) => {
   return (
     <div className="back">
       <div className="pop-up-container">
         <p>{info}</p>
-        {lost && <span>Przegrałeś</span>}
         <button onClick={onClick}>Jeszcze raz!</button>
       </div>
     </div>

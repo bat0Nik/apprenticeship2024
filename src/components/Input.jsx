@@ -1,10 +1,15 @@
-const Input = ({ value, onChange, disabled }) => {
+const Input = ({ value, onChange, onKeyDown, disabled }) => {
   return (
     <>
       {disabled ? (
         <input type="number" value={value} onChange={onChange} disabled />
       ) : (
-        <input type="number" value={value} onChange={onChange} />
+        <input
+          type="number"
+          value={value}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
       )}
     </>
   );
