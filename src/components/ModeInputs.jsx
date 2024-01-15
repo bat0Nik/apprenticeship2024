@@ -24,9 +24,11 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
   const handleButtonClick = () => {
     let parsedUserInput = parseInt(userInput);
     if (parsedUserInput === expectedResult) {
-      console.log("Powinien sie zmienic level");
       setLevel((prevLevel) => prevLevel + 1);
-      if (countPoints) setPoints((prevPoints) => prevPoints + 1);
+      if (countPoints) {
+        if (level < 20) setPoints((prevPoints) => prevPoints + 1);
+        else setPoints((prevPoints) => prevPoints + 2);
+      }
       generateNumbers(level);
       setMessage("Poprawna odpowiedź!");
     } else {
@@ -75,15 +77,38 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
       setMinNumber2(1);
       setMaxNumber2(14);
     } else if (lvl >= 10 && lvl < 15) {
-      setMinNumber1(2);
+      setMinNumber1(1);
       setMaxNumber1(5);
-      setMinNumber2(2);
+      setMinNumber2(1);
       setMaxNumber2(5);
+    } else if (lvl >= 20 && lvl < 25) {
+      setMinNumber1(1);
+      setMaxNumber1(50);
+      setMinNumber2(1);
+      setMaxNumber2(50);
+    } else if (lvl >= 25 && lvl < 30) {
+      setMinNumber1(50);
+      setMaxNumber1(100);
+      setMinNumber2(1);
+      setMaxNumber2(49);
+    } else if (lvl >= 30 && lvl < 35) {
+      setMinNumber1(1);
+      setMaxNumber1(10);
+      setMinNumber2(1);
+      setMaxNumber2(10);
     }
 
-    if (lvl >= 15 && lvl < 20) {
-      let n1 = divisiblebleNumbers[getRandomNumber(0, 18)];
-      let n2 = dividers[getRandomNumber(0, 10)];
+    if ((lvl >= 15 && lvl < 20) || lvl >= 35) {
+      let maxDivider, maxDivisableNumbers;
+      if (lvl >= 15 && lvl < 20) {
+        maxDivider = 10;
+        maxDivisableNumbers = 18;
+      } else if (lvl >= 35) {
+        maxDivider = 13;
+        maxDivisableNumbers = 78;
+      }
+      let n1 = divisiblebleNumbers[getRandomNumber(0, maxDivisableNumbers)];
+      let n2 = dividers[getRandomNumber(0, maxDivider)];
 
       while (n1 % n2 !== 0) {
         n2 = dividers[getRandomNumber(0, 10)];
@@ -97,7 +122,6 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
     }
 
     if (lvl < 5) {
-      console.log("level: " + lvl);
       newOperation = "+";
       newExpectedResult = newNumber1 + newNumber2;
     } else if (lvl >= 5 && lvl < 10) {
@@ -109,6 +133,21 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
     } else if (lvl >= 15 && lvl < 20) {
       newOperation = "/";
       newExpectedResult = newNumber1 / newNumber2;
+    } else if (lvl >= 20 && lvl < 25) {
+      newOperation = "+";
+      newExpectedResult = newNumber1 + newNumber2;
+    } else if (lvl >= 25 && lvl < 30) {
+      newOperation = "-";
+      newExpectedResult = newNumber1 - newNumber2;
+    } else if (lvl >= 30 && lvl < 35) {
+      newOperation = "*";
+      newExpectedResult = newNumber1 * newNumber2;
+    } else if (lvl >= 35) {
+      newOperation = "/";
+      newExpectedResult = newNumber1 / newNumber2;
+    }
+    if (points < 50) {
+      console.log(points);
     }
     setNumber1(newNumber1);
     setNumber2(newNumber2);

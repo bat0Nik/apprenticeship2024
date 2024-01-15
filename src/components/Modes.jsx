@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 // import { useState } from "react";
 import Soundbar from "./Soundbar";
+import BackButton from "./BackButton";
 
 const Modes = () => {
   // const [isButton1Hovered, setIsButton1Hovered] = useState(false);
@@ -32,7 +33,7 @@ const Modes = () => {
   return (
     <div className="modes-container">
       <div className="modes-top-bar">
-        <Link to="/">Cofnik</Link>
+        <BackButton toLink="/" />
         <Soundbar />
       </div>
       <div className="modes-choose">

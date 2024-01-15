@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import ModeInputs from "./ModeInputs";
 import { useState } from "react";
 import Heart from "./Heart";
 import LostHeart from "./LostHeart";
+import BackButton from "./BackButton";
 
 const Mode2 = () => {
   const [lives, setLives] = useState(3);
@@ -10,7 +10,7 @@ const Mode2 = () => {
   return (
     <div>
       <div className="mode-top-bar">
-        <Link to="/modes">Cofnij</Link>
+        <BackButton toLink="/modes" />
         <div className="heart-container">
           {lives >= 3 ? <Heart /> : <LostHeart />}
           {lives >= 2 ? <Heart /> : <LostHeart />}
