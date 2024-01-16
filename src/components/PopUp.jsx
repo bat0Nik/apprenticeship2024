@@ -2,7 +2,7 @@ import React from "react";
 
 const PopUp = ({ info, onClick }) => {
   return (
-    <div className="back">
+    <div className="pop-up-back">
       <div className="pop-up-container">
         <p>{info}</p>
         <button onClick={onClick}>Jeszcze raz!</button>

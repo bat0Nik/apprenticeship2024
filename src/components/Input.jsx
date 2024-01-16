@@ -9,6 +9,8 @@ const Input = ({ value, onChange, onKeyDown, disabled }) => {
           value={value}
           onChange={onChange}
           onKeyDown={onKeyDown}
+          min={1}
+          max={3}
         />
       )}
     </>

@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
-import PopUp from "./PopUp";
 import Input from "./Input";
 
-const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
+const ModeInputs = ({
+  points,
+  setPoints,
+  lives,
+  setLives,
+  countPoints,
+  setMessage,
+}) => {
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(0);
   const [operation, setOperation] = useState("");
   const [userInput, setUserInput] = useState("");
   const [expectedResult, setExpectedResult] = useState(0);
-  const [message, setMessage] = useState("");
   const [level, setLevel] = useState(1);
-  const [showPopUp, setShowPopUp] = useState(false);
   const [minNumber1, setMinNumber1] = useState(1);
   const [maxNumber1, setMaxNumber1] = useState(12);
   const [minNumber2, setMinNumber2] = useState(1);
@@ -38,10 +42,7 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
       if (lives > 0) updateLives();
     }
 
-    if (lives < 1) {
-      setLost(true);
-      setShowPopUp(false);
-    } else setShowPopUp(true);
+    if (lives < 1) setLost(true);
     setUserInput("");
   };
   let divisiblebleNumbers = [];
@@ -55,7 +56,6 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
   useEffect(() => {
     if (lives < 1) {
       setLost(true);
-      setShowPopUp(false);
     }
     generateNumbers(level);
   }, [level, minNumber1, maxNumber1, minNumber2, maxNumber2, lives]);
@@ -165,10 +165,12 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
     <div className="inputs-container">
       {lost ? (
         <button
+          className="play-again-btn"
           onClick={() => {
             if (lives === 0) {
               setLives(3);
               setLost(false);
+              setMessage("");
             }
           }}
         >
@@ -193,15 +195,6 @@ const ModeInputs = ({ points, setPoints, lives, setLives, countPoints }) => {
           <button onClick={handleButtonClick} className="check">
             Sprawdz wynik
           </button>
-          {showPopUp && (
-            <PopUp
-              info={message}
-              onClick={() => {
-                setShowPopUp(false);
-                setMessage("");
-              }}
-            />
-          )}
         </>
       )}
     </div>

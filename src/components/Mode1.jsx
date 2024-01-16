@@ -1,16 +1,23 @@
 import ModeInputs from "./ModeInputs";
 import { useState } from "react";
 import BackButton from "./BackButton";
+import Avatar from "./Avatar";
 
-const Mode1 = () => {
+const Mode1 = ({ setMessage }) => {
   const [points, setPoints] = useState(0);
   return (
     <div className="mode-container">
       <div className="mode-top-bar">
         <BackButton toLink="/modes" />
-        <p>{points}/50</p>
+        <h1>{points} / 50</h1>
       </div>
-      <ModeInputs points={points} setPoints={setPoints} countPoints={true} />
+      <ModeInputs
+        points={points}
+        setPoints={setPoints}
+        countPoints={true}
+        setMessage={setMessage}
+      />
+      <Avatar />
     </div>
   );
 };

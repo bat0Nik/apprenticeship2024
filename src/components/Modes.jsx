@@ -1,34 +1,22 @@
 import { Link } from "react-router-dom";
-// import { useState } from "react";
 import Soundbar from "./Soundbar";
 import BackButton from "./BackButton";
+import { useState } from "react";
 
-const Modes = () => {
-  // const [isButton1Hovered, setIsButton1Hovered] = useState(false);
-  // const [isButton2Hovered, setIsButton2Hovered] = useState(false);
-  // let [description, setDescription] = useState("");
+const Modes = ({ setMessage }) => {
+  const [mess, setMess] = useState("");
+  setMessage(mess);
+  const handleMouseEnterButton1 = () => {
+    setMess(
+      "Tryb polega na zebraniu 50pkt wykonując działania matematyczne. Punkty dostajesz za dobrze wykonane działania, a za złą odpowiedź je tracisz."
+    );
+  };
 
-  // const handleMouseEnterButton1 = () => {
-  //   // setIsButton1Hovered(true);
-  //   // setDescription(
-  //   //   "Tryb polega na zebraniu 50pkt wykonujac dzialania matematyczne. Punkty dostajesz za dobrze wykonane dzialania, a za zla odpowiedz je tracisz."
-  //   // );
-  // };
-
-  // const handleMouseLeaveButton1 = () => {
-  //   setIsButton1Hovered(false);
-  // };
-
-  // const handleMouseEnterButton2 = () => {
-  //   // setIsButton2Hovered(true);
-  //   // setDescription(
-  //   //   "Tryb polega na zdobycou jak niwiekszej ilosci punktow. Posiadasz tylko 3 zycia. Za bledna odpowiedz odbieane jest jedno zycie"
-  //   // );
-  // };
-
-  // const handleMouseLeaveButton2 = () => {
-  //   setIsButton2Hovered(false);
-  // };
+  const handleMouseEnterButton2 = () => {
+    setMess(
+      "Tryb polega na zdobyciu jak największej ilości punktów. Posiadasz tylko 3 życia. Za błędną odpowiedź odbierane jest jedno życie"
+    );
+  };
 
   return (
     <div className="modes-container">
@@ -38,27 +26,12 @@ const Modes = () => {
       </div>
       <div className="modes-choose">
         <h1>WYBIERZ TRYB GRY</h1>
-        <Link
-          to="/modes/mode1"
-          // onMouseEnter={handleMouseEnterButton1}
-          // onMouseLeave={handleMouseLeaveButton1}
-          href="#"
-          data-tooltip="Tryb polega na zebraniu 50pkt wykonujac dzialania matematyczne. Punkty dostajesz za dobrze wykonane dzialania, a za zla odpowiedz je tracisz."
-        >
+        <Link to="/modes/mode1" onMouseEnter={handleMouseEnterButton1}>
           ZBIERZ 50 PKT
         </Link>
-        <Link
-          to="/modes/mode2"
-          // onMouseEnter={handleMouseEnterButton2}
-          // onMouseLeave={handleMouseLeaveButton2}
-          href="#"
-          data-tooltip="Tryb polega na zdobycou jak niwiekszej ilosci punktow. Posiadasz tylko 3 zycia. Za bledna odpowiedz odbieane jest jedno zycie"
-        >
-          3 ZYCIA
+        <Link to="/modes/mode2" onMouseEnter={handleMouseEnterButton2}>
+          3 ŻYCIA
         </Link>
-        {/* 
-        {isButton1Hovered && <p>{description}</p>}
-        {isButton2Hovered && <p>{description}</p>} */}
       </div>
     </div>
   );
