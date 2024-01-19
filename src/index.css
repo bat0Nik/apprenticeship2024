@@ -11,7 +11,7 @@ body{
     height: 100vh;
 }
 .app{
-    background-image: url(./images/story3.png);
+    background-image: url("./images/backrMathGAME.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -25,7 +25,7 @@ body{
 .container{
     width: 700px;
     height: 500px;
-    background-image: url("./images/bckgrMathGAME.png");
+    background-image: url("./images/bckgrMenuMathGAME.png");
 }
 .menu-container{
     width: 100%;
@@ -73,7 +73,7 @@ body{
     position: fixed;
     bottom: 0;
     right: 0;
-    height: 600px;
+    height: 540px;
     width: 500px;
     display: flex;
     /* background-image: url('./images/Skalmar_Obłynos.png'); */
@@ -98,6 +98,13 @@ body{
 .avatar img{
     position: fixed;
     bottom: 0;
+    right: 0;
+    /* background-image: url('./images/Skalmar_Obłynos.png'); */
+}
+.avatar .m-bottom{
+    position: fixed;
+    bottom: 0;
+    margin-bottom: -150px;
     right: 0;
     /* background-image: url('./images/Skalmar_Obłynos.png'); */
 }

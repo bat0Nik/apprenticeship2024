@@ -1,9 +1,8 @@
 import ModeInputs from "./ModeInputs";
 import { useState } from "react";
 import BackButton from "./BackButton";
-import Avatar from "./Avatar";
 
-const Mode1 = ({ setMessage }) => {
+const Mode1 = ({ setMessage, setBadAnswer }) => {
   const [points, setPoints] = useState(0);
   return (
     <div className="mode-container">
@@ -16,8 +15,8 @@ const Mode1 = ({ setMessage }) => {
         setPoints={setPoints}
         countPoints={true}
         setMessage={setMessage}
+        setBadAnswer={setBadAnswer}
       />
-      <Avatar />
     </div>
   );
 };

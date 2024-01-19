@@ -9,18 +9,20 @@ import Avatar from "./components/Avatar";
 
 function App() {
   const [message, setMessage] = useState("");
+  const [menu, setMenu] = useState(false);
+  const [badAnswer, setBadAnswer] = useState(false);
   return (
     <div className="app">
       <div className="container">
         <AudioProvider>
           <Routes>
-            <Route path="/" element={<Menu setMessage={setMessage} />} />
-            <Route path="/modes" element={<Modes setMessage={setMessage} />} />
-            <Route path="/modes/mode1" element={<Mode1 setMessage={setMessage} />} />
-            <Route path="/modes/mode2" element={<Mode2 setMessage={setMessage} />} />
+            <Route path="/" element={<Menu setMessage={setMessage} setMenu={setMenu} />} />
+            <Route path="/modes" element={<Modes setMessage={setMessage} setMenu={setMenu} />} />
+            <Route path="/modes/mode1" element={<Mode1 setMessage={setMessage} setBadAnswer={setBadAnswer} />} />
+            <Route path="/modes/mode2" element={<Mode2 setMessage={setMessage} setBadAnswer={setBadAnswer} />} />
           </Routes>
         </AudioProvider>
-        <Avatar message={message} />
+        <Avatar message={message} menu={menu} badAnswer={badAnswer} />
       </div>
     </div>
   );

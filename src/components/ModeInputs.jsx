@@ -8,6 +8,7 @@ const ModeInputs = ({
   setLives,
   countPoints,
   setMessage,
+  setBadAnswer,
 }) => {
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(0);
@@ -19,6 +20,8 @@ const ModeInputs = ({
   const [maxNumber1, setMaxNumber1] = useState(12);
   const [minNumber2, setMinNumber2] = useState(1);
   const [maxNumber2, setMaxNumber2] = useState(13);
+  const [goodAnswers, setGoodAnswers] = useState(0);
+  const [badAnswers, setBadAnswers] = useState(0);
   const [lost, setLost] = useState(false);
 
   const updateLives = async () => {
@@ -28,14 +31,18 @@ const ModeInputs = ({
   const handleButtonClick = () => {
     let parsedUserInput = parseInt(userInput);
     if (parsedUserInput === expectedResult) {
+      setBadAnswer(false);
       setLevel((prevLevel) => prevLevel + 1);
       if (countPoints) {
         if (level < 20) setPoints((prevPoints) => prevPoints + 1);
         else setPoints((prevPoints) => prevPoints + 2);
       }
+      setGoodAnswers(goodAnswers + 1);
       generateNumbers(level);
       setMessage("Poprawna odpowiedź!");
     } else {
+      setBadAnswer(true);
+      setBadAnswers(badAnswers + 1);
       setMessage("Nieprawidłowa odpowiedź");
       if (countPoints && points !== 0)
         setPoints((prevPoints) => prevPoints - 1);
@@ -57,8 +64,9 @@ const ModeInputs = ({
     if (lives < 1) {
       setLost(true);
     }
+    if (points === 50) setMessage("Udało się! Wygrana!");
     generateNumbers(level);
-  }, [level, minNumber1, maxNumber1, minNumber2, maxNumber2, lives]);
+  }, [level, minNumber1, maxNumber1, minNumber2, maxNumber2, lives, points]);
 
   const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -164,18 +172,37 @@ const ModeInputs = ({
   return (
     <div className="inputs-container">
       {lost ? (
-        <button
-          className="play-again-btn"
-          onClick={() => {
-            if (lives === 0) {
-              setLives(3);
-              setLost(false);
-              setMessage("");
-            }
-          }}
-        >
-          Zagraj jeszcze raz
-        </button>
+        <>
+          <h1>Poprawne odpowiedzi: {goodAnswers}</h1>
+          <button
+            className="play-again-btn"
+            onClick={() => {
+              if (lives === 0) {
+                setLives(3);
+                setLost(false);
+                setMessage("");
+              }
+            }}
+          >
+            Zagraj jeszcze raz
+          </button>
+        </>
+      ) : points === 50 ? (
+        <>
+          <h1>Poprawne odpowiedzi: {goodAnswers}</h1>
+          <h1>Błędne odpowiedzi: {badAnswers}</h1>
+          <button
+            className="play-again-btn"
+            onClick={() => {
+              if (lives === 0) {
+                setPoints(0);
+                setMessage("");
+              }
+            }}
+          >
+            Zagraj jeszcze raz
+          </button>
+        </>
       ) : (
         <>
           <div className="level-bar">

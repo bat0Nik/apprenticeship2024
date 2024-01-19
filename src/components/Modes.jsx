@@ -1,20 +1,18 @@
 import { Link } from "react-router-dom";
 import Soundbar from "./Soundbar";
 import BackButton from "./BackButton";
-import { useState } from "react";
 
-const Modes = ({ setMessage }) => {
-  const [mess, setMess] = useState("");
-  setMessage(mess);
+const Modes = ({ setMessage, setMenu }) => {
+  setMenu(false);
   const handleMouseEnterButton1 = () => {
-    setMess(
+    setMessage(
       "Tryb polega na zebraniu 50pkt wykonując działania matematyczne. Punkty dostajesz za dobrze wykonane działania, a za złą odpowiedź je tracisz."
     );
   };
 
   const handleMouseEnterButton2 = () => {
-    setMess(
-      "Tryb polega na zdobyciu jak największej ilości punktów. Posiadasz tylko 3 życia. Za błędną odpowiedź odbierane jest jedno życie"
+    setMessage(
+      "Tryb polega na zdobyciu jak największej poprawnych odpowiedzi. Posiadasz tylko 3 życia. Za błędną odpowiedź odbierane jest jedno życie"
     );
   };
 

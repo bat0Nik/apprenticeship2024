@@ -3,9 +3,8 @@ import { useState } from "react";
 import Heart from "./Heart";
 import LostHeart from "./LostHeart";
 import BackButton from "./BackButton";
-import Avatar from "./Avatar";
 
-const Mode2 = ({ setMessage }) => {
+const Mode2 = ({ setMessage, setBadAnswer }) => {
   const [lives, setLives] = useState(3);
 
   return (
@@ -23,8 +22,8 @@ const Mode2 = ({ setMessage }) => {
         setLives={setLives}
         countPoints={false}
         setMessage={setMessage}
+        setBadAnswer={setBadAnswer}
       />
-      <Avatar />
     </div>
   );
 };

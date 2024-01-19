@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import logo from "../images/LOGOMathGAMEv2.png";
 
-const Menu = ({ setMessage }) => {
+const Menu = ({ setMessage, setMenu }) => {
   setMessage("Witaj w MathGAME");
+  setMenu(true);
   return (
     <div className="menu-container">
       <img src={logo} alt="logo" />

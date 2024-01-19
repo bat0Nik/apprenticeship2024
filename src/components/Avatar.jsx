@@ -1,6 +1,8 @@
-import skalmar from "../images/Skalmar_Obłynos.png";
+import skalmar from "../images/Squidward.png";
+import welcomeSpongebob from "../images/welcomeSpongebob.gif";
+import badAnswereSpongebob from "../images/badAnswereImage.png";
 
-const Avatar = ({ message }) => {
+const Avatar = ({ message, menu, badAnswer }) => {
   return (
     <div className="avatar">
       {message && (
@@ -8,7 +10,16 @@ const Avatar = ({ message }) => {
           <p>{message}</p>
         </div>
       )}
-      <img src={skalmar} alt="" />
+
+      {menu ? (
+        <img src={welcomeSpongebob} alt="" />
+      ) : (
+        <img
+          src={badAnswer ? badAnswereSpongebob : skalmar}
+          alt=""
+          className={badAnswer ? "" : "m-bottom"}
+        />
+      )}
     </div>
   );
 };
