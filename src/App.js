@@ -17,7 +17,7 @@ function App() {
         <AudioProvider>
           <Routes>
             <Route path="/" element={<Menu setMessage={setMessage} setMenu={setMenu} />} />
-            <Route path="/modes" element={<Modes setMessage={setMessage} setMenu={setMenu} />} />
+            <Route path="/modes" element={<Modes setMessage={setMessage} setMenu={setMenu} setBadAnswer={setBadAnswer} />} />
             <Route path="/modes/mode1" element={<Mode1 setMessage={setMessage} setBadAnswer={setBadAnswer} />} />
             <Route path="/modes/mode2" element={<Mode2 setMessage={setMessage} setBadAnswer={setBadAnswer} />} />
           </Routes>

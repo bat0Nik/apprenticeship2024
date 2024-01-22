@@ -46,29 +46,20 @@ body{
 }
 .modes-top-bar{
     width: 80%;
-    margin: 0 auto;
+    margin: 40px auto;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    align-items: center;
 }
 .modes-choose{
-    height: 40%;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
 }
-.avatar{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    height: 400px;
-    width: 400px;
-    display: flex;
-    /* background-image: url('./images/Skalmar_Obłynos.png'); */
-}
+
 .avatar{
     position: fixed;
     bottom: 0;
@@ -76,7 +67,6 @@ body{
     height: 540px;
     width: 500px;
     display: flex;
-    /* background-image: url('./images/Skalmar_Obłynos.png'); */
 }
 .avatar .avatar-message{
     background-image: url('./images/messageBckgr.png');
@@ -93,20 +83,17 @@ body{
 .avatar .avatar-message p{
     font-family: 'Ubuntu';
     font-weight: bold;
-
 }
 .avatar img{
     position: fixed;
     bottom: 0;
     right: 0;
-    /* background-image: url('./images/Skalmar_Obłynos.png'); */
 }
 .avatar .m-bottom{
     position: fixed;
     bottom: 0;
     margin-bottom: -150px;
     right: 0;
-    /* background-image: url('./images/Skalmar_Obłynos.png'); */
 }
 
 .mode-container{
@@ -243,4 +230,81 @@ a img{
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -5px;
+  }
+
+  @media screen and (max-width: 1300px){
+    
+    .avatar .avatar-message{
+        background-size: 250px;
+        padding: 20px;
+        padding-top:10px;
+        padding-bottom: 60px;
+        height: 180px;
+        width: 210px;
+    }
+    .avatar .avatar-message p{
+        font-family: 'Ubuntu';
+        font-size: 14px;
+        font-weight: normal;
+    }
+    .avatar{
+        width: 380px;
+        height: 410px;
+    }
+    .avatar img{
+        width: 150px;
+    }
+    .avatar .d-width{
+        width: 350px;
+    }
+  }
+  @media screen and (max-width: 1000px){
+    .app{
+        justify-content: start;
+    }
+    .container{
+        margin-top: 100px;
+    }
+  }
+  @media screen and (max-width: 720px){
+    .app{
+        background-color: #fcf175;
+        background-image: none;
+    }
+    .container{
+        width: 100%;
+        height: 400px;
+        background-image: none;
+        margin: 0;
+    }
+    .menu-container img{
+        width: 250px;
+    }
+    
+  }
+  @media screen and (max-height: 770px){
+    /* .avatar .avatar-message{
+        background-size: 250px;
+        padding: 20px;
+        padding-top:10px;
+        padding-bottom: 60px;
+        height: 180px;
+        width: 210px;
+    }
+    .avatar .avatar-message p{
+        font-family: 'Ubuntu';
+        font-size: 14px;
+        font-weight: normal;
+    } */
+    .avatar{
+        width: 360px;
+        height: 300px;
+    }
+    /* .avatar img{
+        width: 150px;
+    } */
+    .avatar .d-width{
+        width: 230px;
+    }
+    
   }

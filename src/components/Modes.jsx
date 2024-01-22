@@ -1,18 +1,25 @@
 import { Link } from "react-router-dom";
 import Soundbar from "./Soundbar";
 import BackButton from "./BackButton";
+import { useEffect, useCallback } from "react";
 
-const Modes = ({ setMessage, setMenu }) => {
-  setMenu(false);
+const Modes = ({ setMessage, setMenu, setBadAnswer }) => {
+  const memoizedSetMenu = useCallback(setMenu, [setMenu]);
+  useEffect(() => {
+    memoizedSetMenu(false);
+  }, [memoizedSetMenu]);
+
   const handleMouseEnterButton1 = () => {
+    setBadAnswer(false);
     setMessage(
       "Tryb polega na zebraniu 50pkt wykonując działania matematyczne. Punkty dostajesz za dobrze wykonane działania, a za złą odpowiedź je tracisz."
     );
   };
 
   const handleMouseEnterButton2 = () => {
+    setBadAnswer(false);
     setMessage(
-      "Tryb polega na zdobyciu jak największej poprawnych odpowiedzi. Posiadasz tylko 3 życia. Za błędną odpowiedź odbierane jest jedno życie"
+      "Tryb polega na zdobyciu jak największej ilości poprawnych odpowiedzi. Posiadasz tylko 3 życia. Za błędną odpowiedź odbierane jest jedno życie"
     );
   };
 

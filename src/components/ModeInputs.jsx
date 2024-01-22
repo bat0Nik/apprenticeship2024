@@ -154,9 +154,6 @@ const ModeInputs = ({
       newOperation = "/";
       newExpectedResult = newNumber1 / newNumber2;
     }
-    if (points < 50) {
-      console.log(points);
-    }
     setNumber1(newNumber1);
     setNumber2(newNumber2);
     setOperation(newOperation);

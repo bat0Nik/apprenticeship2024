@@ -12,7 +12,7 @@ const Avatar = ({ message, menu, badAnswer }) => {
       )}
 
       {menu ? (
-        <img src={welcomeSpongebob} alt="" />
+        <img src={welcomeSpongebob} alt="" className="d-width" />
       ) : (
         <img
           src={badAnswer ? badAnswereSpongebob : skalmar}
