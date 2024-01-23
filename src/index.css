@@ -283,26 +283,11 @@ a img{
     
   }
   @media screen and (max-height: 770px){
-    /* .avatar .avatar-message{
-        background-size: 250px;
-        padding: 20px;
-        padding-top:10px;
-        padding-bottom: 60px;
-        height: 180px;
-        width: 210px;
-    }
-    .avatar .avatar-message p{
-        font-family: 'Ubuntu';
-        font-size: 14px;
-        font-weight: normal;
-    } */
+   
     .avatar{
         width: 360px;
         height: 300px;
     }
-    /* .avatar img{
-        width: 150px;
-    } */
     .avatar .d-width{
         width: 230px;
     }
