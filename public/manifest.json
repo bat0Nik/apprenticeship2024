@@ -1,25 +1,55 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MAthGAME",
+  "name": "Math GAME",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "logo16x16.ico",
+      "sizes": "16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo24x24.ico",
+      "sizes": "24x24",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo32x32.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo64x64.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logo512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffcb1a",
+  "background_color": "#fcf175",
+  "orientation":"portrait",
+  "screenshots":[
+    {
+      "src":"screenshot1.png",
+      "sizes":"1680x910",
+      "type":"image/png",
+      "form_factor":"wide"
+    },
+    {
+      "src":"screenshot2.png",
+      "sizes":"388x843",
+      "type":"image/png",
+      "form_factor":"narrow"
+    }
+  ]
 }
