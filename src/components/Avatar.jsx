@@ -1,25 +1,30 @@
-import skalmar from "../images/Squidward.png";
-import welcomeSpongebob from "../images/welcomeSpongebob.gif";
-import badAnswereSpongebob from "../images/badAnswereImage.png";
+import squidward from "../images/BottomCharacter/Squidward.png";
+import welcomeSpongebob from "../images/BottomCharacter/welcomeSpongebob.gif";
+import badAnswereSpongebob from "../images/BottomCharacter/badAnswereImage.png";
+import goodAnswereSpongebob from "../images/BottomCharacter/goodAnsfereImage.gif";
 
-const Avatar = ({ message, menu, badAnswer }) => {
+const Avatar = ({ message, menu, badAnswer, goodAnswer, display }) => {
+  let source;
+
+  if (menu) {
+    source = welcomeSpongebob;
+  } else if (badAnswer) {
+    source = badAnswereSpongebob;
+  } else if (goodAnswer) {
+    source = goodAnswereSpongebob;
+  } else {
+    source = squidward;
+  }
+
   return (
-    <div className="avatar">
+    <div className="avatar" style={{ display: display ? "flex" : "none" }}>
       {message && (
         <div className="avatar-message">
           <p>{message}</p>
         </div>
       )}
 
-      {menu ? (
-        <img src={welcomeSpongebob} alt="" className="d-width" />
-      ) : (
-        <img
-          src={badAnswer ? badAnswereSpongebob : skalmar}
-          alt=""
-          className={badAnswer ? "" : "m-bottom"}
-        />
-      )}
+      <img src={source} alt="character" />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-const Input = ({ value, onChange, onKeyDown, disabled }) => {
+const Input = ({ value, onChange, onKeyDown, disabled, onFocus, onBlur }) => {
   return (
     <>
       {disabled ? (
@@ -9,6 +9,8 @@ const Input = ({ value, onChange, onKeyDown, disabled }) => {
           value={value}
           onChange={onChange}
           onKeyDown={onKeyDown}
+          onFocus={onFocus}
+          onBlur={onBlur}
           min={1}
           max={3}
         />

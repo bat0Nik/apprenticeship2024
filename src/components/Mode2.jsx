@@ -4,13 +4,20 @@ import Heart from "./Heart";
 import LostHeart from "./LostHeart";
 import BackButton from "./BackButton";
 
-const Mode2 = ({ setMessage, setBadAnswer }) => {
+const Mode2 = ({
+  setMessage,
+  setBadAnswer,
+  setGoodAnswer,
+  setDisplay,
+  windowWidth,
+  difficulty,
+}) => {
   const [lives, setLives] = useState(3);
 
   return (
     <div>
       <div className="mode-top-bar">
-        <BackButton toLink="/modes" />
+        <BackButton toLink="/modes/difficulty" />
         <div className="heart-container">
           {lives >= 3 ? <Heart /> : <LostHeart />}
           {lives >= 2 ? <Heart /> : <LostHeart />}
@@ -23,6 +30,10 @@ const Mode2 = ({ setMessage, setBadAnswer }) => {
         countPoints={false}
         setMessage={setMessage}
         setBadAnswer={setBadAnswer}
+        setGoodAnswer={setGoodAnswer}
+        setDisplay={setDisplay}
+        windowWidth={windowWidth}
+        difficulty={difficulty}
       />
     </div>
   );

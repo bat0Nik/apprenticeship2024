@@ -1,23 +1,25 @@
-import { Link } from "react-router-dom";
 import Soundbar from "./Soundbar";
 import BackButton from "./BackButton";
 import { useEffect, useCallback } from "react";
+import ModesChoose from "./ModesChoose";
 
-const Modes = ({ setMessage, setMenu, setBadAnswer }) => {
+const Modes = ({ setMessage, setMenu, setModePath }) => {
   const memoizedSetMenu = useCallback(setMenu, [setMenu]);
   useEffect(() => {
     memoizedSetMenu(false);
   }, [memoizedSetMenu]);
 
   const handleMouseEnterButton1 = () => {
-    setBadAnswer(false);
+    setModePath("/modes/mode1");
+    localStorage.setItem("modePath", "/modes/mode1");
     setMessage(
       "Tryb polega na zebraniu 50pkt wykonując działania matematyczne. Punkty dostajesz za dobrze wykonane działania, a za złą odpowiedź je tracisz."
     );
   };
 
   const handleMouseEnterButton2 = () => {
-    setBadAnswer(false);
+    setModePath("/modes/mode2");
+    localStorage.setItem("modePath", "/modes/mode2");
     setMessage(
       "Tryb polega na zdobyciu jak największej ilości poprawnych odpowiedzi. Posiadasz tylko 3 życia. Za błędną odpowiedź odbierane jest jedno życie"
     );
@@ -29,15 +31,11 @@ const Modes = ({ setMessage, setMenu, setBadAnswer }) => {
         <BackButton toLink="/" />
         <Soundbar />
       </div>
-      <div className="modes-choose">
-        <h1>WYBIERZ TRYB GRY</h1>
-        <Link to="/modes/mode1" onMouseEnter={handleMouseEnterButton1}>
-          ZBIERZ 50 PKT
-        </Link>
-        <Link to="/modes/mode2" onMouseEnter={handleMouseEnterButton2}>
-          3 ŻYCIA
-        </Link>
-      </div>
+      <ModesChoose
+        onMouseEnter1={handleMouseEnterButton1}
+        onMouseEnter2={handleMouseEnterButton2}
+        path={"/modes/difficulty"}
+      />
     </div>
   );
 };

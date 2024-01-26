@@ -9,49 +9,74 @@ const ModeInputs = ({
   countPoints,
   setMessage,
   setBadAnswer,
+  setDisplay,
+  windowWidth,
+  setGoodAnswer,
+  difficulty,
 }) => {
+  const handleInputFocus = () => {
+    if (windowWidth <= 770) setDisplay(false);
+  };
+
+  const handleInputBlur = () => {
+    setDisplay(true);
+  };
+
+  const [lost, setLost] = useState(false);
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(0);
   const [operation, setOperation] = useState("");
   const [userInput, setUserInput] = useState("");
   const [expectedResult, setExpectedResult] = useState(0);
-  const [level, setLevel] = useState(1);
+  const [isPositive, setIsPositive] = useState(false);
   const [minNumber1, setMinNumber1] = useState(1);
   const [maxNumber1, setMaxNumber1] = useState(12);
   const [minNumber2, setMinNumber2] = useState(1);
   const [maxNumber2, setMaxNumber2] = useState(13);
   const [goodAnswers, setGoodAnswers] = useState(0);
   const [badAnswers, setBadAnswers] = useState(0);
-  const [lost, setLost] = useState(false);
+  const [level, setLevel] = useState(1);
 
   const updateLives = async () => {
     await setLives((prevLives) => prevLives - 1);
   };
 
   const handleButtonClick = () => {
-    let parsedUserInput = parseInt(userInput);
+    const parsedUserInput = parseInt(userInput);
     if (parsedUserInput === expectedResult) {
-      setBadAnswer(false);
-      setLevel((prevLevel) => prevLevel + 1);
-      if (countPoints) {
-        if (level < 20) setPoints((prevPoints) => prevPoints + 1);
-        else setPoints((prevPoints) => prevPoints + 2);
-      }
-      setGoodAnswers(goodAnswers + 1);
-      generateNumbers(level);
-      setMessage("Poprawna odpowiedź!");
+      handleCorrectAnswer();
     } else {
-      setBadAnswer(true);
-      setBadAnswers(badAnswers + 1);
-      setMessage("Nieprawidłowa odpowiedź");
-      if (countPoints && points !== 0)
-        setPoints((prevPoints) => prevPoints - 1);
-      if (lives > 0) updateLives();
+      handleIncorrectAnswer();
     }
 
     if (lives < 1) setLost(true);
     setUserInput("");
   };
+
+  const handleCorrectAnswer = () => {
+    setBadAnswer(false);
+    setGoodAnswer(true);
+    setLevel((prevLevel) => prevLevel + 1);
+
+    if (countPoints) {
+      const pointsToAdd = level < 20 ? 1 : 2;
+      setPoints((prevPoints) => prevPoints + pointsToAdd);
+    }
+
+    setGoodAnswers(goodAnswers + 1);
+    setMessage("Poprawna odpowiedź!");
+  };
+
+  const handleIncorrectAnswer = () => {
+    setGoodAnswer(false);
+    setBadAnswer(true);
+    setBadAnswers(badAnswers + 1);
+    setMessage("Nieprawidłowa odpowiedź");
+
+    if (countPoints && points !== 0) setPoints((prevPoints) => prevPoints - 1);
+    if (lives > 0) updateLives();
+  };
+
   let divisiblebleNumbers = [];
   const dividers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -60,61 +85,89 @@ const ModeInputs = ({
       divisiblebleNumbers.push(i);
     }
   }
+
   useEffect(() => {
     if (lives < 1) {
       setLost(true);
     }
-    if (points === 50) setMessage("Udało się! Wygrana!");
-    generateNumbers(level);
-  }, [level, minNumber1, maxNumber1, minNumber2, maxNumber2, lives, points]);
+    if (points === 50) {
+      setMessage("Udało się! Wygrana!");
+    }
+  }, [lives, points]);
+
+  useEffect(() => {
+    generateNumbers();
+  }, [level, minNumber1, maxNumber1, minNumber2, maxNumber2]);
+
+  useEffect(() => {
+    if (level % 5 === 4) {
+      setIsPositive(!isPositive);
+    }
+  }, [level]);
 
   const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const generateNumbers = (lvl) => {
-    let newNumber1, newNumber2, newOperation, newExpectedResult;
-    if (lvl < 5) {
-      setMinNumber1(1);
-      setMaxNumber1(12);
-      setMinNumber2(1);
-      setMaxNumber2(13);
-    } else if (lvl >= 5 && lvl < 10) {
-      setMinNumber1(15);
-      setMaxNumber1(25);
-      setMinNumber2(1);
-      setMaxNumber2(14);
-    } else if (lvl >= 10 && lvl < 15) {
-      setMinNumber1(1);
-      setMaxNumber1(5);
-      setMinNumber2(1);
-      setMaxNumber2(5);
-    } else if (lvl >= 20 && lvl < 25) {
-      setMinNumber1(1);
-      setMaxNumber1(50);
-      setMinNumber2(1);
-      setMaxNumber2(50);
-    } else if (lvl >= 25 && lvl < 30) {
-      setMinNumber1(50);
-      setMaxNumber1(100);
-      setMinNumber2(1);
-      setMaxNumber2(49);
-    } else if (lvl >= 30 && lvl < 35) {
-      setMinNumber1(1);
-      setMaxNumber1(10);
-      setMinNumber2(1);
-      setMaxNumber2(10);
-    }
+  const generateNumbers = () => {
+    console.log(difficulty);
+    let newNumber1,
+      newNumber2,
+      newOperation,
+      newExpectedResult,
+      maxDivider,
+      maxDivisableNumbers;
 
-    if ((lvl >= 15 && lvl < 20) || lvl >= 35) {
-      let maxDivider, maxDivisableNumbers;
-      if (lvl >= 15 && lvl < 20) {
-        maxDivider = 10;
-        maxDivisableNumbers = 18;
-      } else if (lvl >= 35) {
-        maxDivider = 13;
-        maxDivisableNumbers = 78;
+    if (difficulty === "easy") {
+      if (level <= 25) {
+        if (!isPositive) {
+          setMinNumber1(1);
+          setMaxNumber1(12);
+          setMinNumber2(1);
+          setMaxNumber2(13);
+        } else {
+          setMinNumber1(15);
+          setMaxNumber1(25);
+          setMinNumber2(1);
+          setMaxNumber2(14);
+        }
+      } else if (level > 25) {
+        if (!isPositive) {
+          setMinNumber1(1);
+          setMaxNumber1(50);
+          setMinNumber2(1);
+          setMaxNumber2(50);
+        } else {
+          setMinNumber1(50);
+          setMaxNumber1(100);
+          setMinNumber2(1);
+          setMaxNumber2(49);
+        }
       }
+    } else if (difficulty === "hard") {
+      if (level <= 25) {
+        if (!isPositive) {
+          setMinNumber1(1);
+          setMaxNumber1(5);
+          setMinNumber2(1);
+          setMaxNumber2(5);
+        } else {
+          maxDivider = 10;
+          maxDivisableNumbers = 18;
+        }
+      } else if (level > 25) {
+        if (!isPositive) {
+          setMinNumber1(1);
+          setMaxNumber1(10);
+          setMinNumber2(1);
+          setMaxNumber2(10);
+        } else {
+          maxDivider = 13;
+          maxDivisableNumbers = 78;
+        }
+      }
+    }
+    if (difficulty === "hard" && isPositive) {
       let n1 = divisiblebleNumbers[getRandomNumber(0, maxDivisableNumbers)];
       let n2 = dividers[getRandomNumber(0, maxDivider)];
 
@@ -129,31 +182,24 @@ const ModeInputs = ({
       newNumber2 = getRandomNumber(minNumber2, maxNumber2);
     }
 
-    if (lvl < 5) {
-      newOperation = "+";
-      newExpectedResult = newNumber1 + newNumber2;
-    } else if (lvl >= 5 && lvl < 10) {
-      newOperation = "-";
-      newExpectedResult = newNumber1 - newNumber2;
-    } else if (lvl >= 10 && lvl < 15) {
-      newOperation = "*";
-      newExpectedResult = newNumber1 * newNumber2;
-    } else if (lvl >= 15 && lvl < 20) {
-      newOperation = "/";
-      newExpectedResult = newNumber1 / newNumber2;
-    } else if (lvl >= 20 && lvl < 25) {
-      newOperation = "+";
-      newExpectedResult = newNumber1 + newNumber2;
-    } else if (lvl >= 25 && lvl < 30) {
-      newOperation = "-";
-      newExpectedResult = newNumber1 - newNumber2;
-    } else if (lvl >= 30 && lvl < 35) {
-      newOperation = "*";
-      newExpectedResult = newNumber1 * newNumber2;
-    } else if (lvl >= 35) {
-      newOperation = "/";
-      newExpectedResult = newNumber1 / newNumber2;
+    if (difficulty === "easy") {
+      if (!isPositive) {
+        newOperation = "+";
+        newExpectedResult = newNumber1 + newNumber2;
+      } else {
+        newOperation = "-";
+        newExpectedResult = newNumber1 - newNumber2;
+      }
+    } else if (difficulty === "hard") {
+      if (!isPositive) {
+        newOperation = "*";
+        newExpectedResult = newNumber1 * newNumber2;
+      } else {
+        newOperation = ":";
+        newExpectedResult = newNumber1 / newNumber2;
+      }
     }
+
     setNumber1(newNumber1);
     setNumber2(newNumber2);
     setOperation(newOperation);
@@ -203,7 +249,7 @@ const ModeInputs = ({
       ) : (
         <>
           <div className="level-bar">
-            <h1>Level {level}</h1>
+            <h1>Poziom {level}</h1>
           </div>
           <div className="inputs-cont">
             <Input value={number1} disabled={true} />
@@ -214,6 +260,8 @@ const ModeInputs = ({
               value={userInput}
               onChange={handleUserInput}
               onKeyDown={handleUserInput}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
             />
           </div>
           <button onClick={handleButtonClick} className="check">
