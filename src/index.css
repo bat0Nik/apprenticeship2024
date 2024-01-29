@@ -58,7 +58,31 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-
+.streak{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    z-index: 0;
+}
+.streak img{
+    position: fixed;
+    width: 50px;
+}
+.streak .grey{
+    filter: grayscale(100%);
+}
+.streak-count{
+    position: inherit;
+    margin-top: 5px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 0px 12px #000;
+}
 .avatar{
     position: fixed;
     bottom: 0;
@@ -102,6 +126,10 @@ body{
     align-items: center;
     margin-bottom: 80px;
     margin-top: 40px;
+}
+.mode-top-bar h1{
+    width: 100px;
+    text-align: end;
 }
 .heart-container{
     display: flex;
@@ -173,7 +201,7 @@ a img{
   
   input[type="range"] {
     -webkit-appearance: none;
-    width: 100%;
+    width: 100px;
     height: 10px;
     border-radius: 5px;
     background: #d3d3d3;
@@ -183,7 +211,7 @@ a img{
   }
   
   input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
+    width: 100px;
     height: 10px;
     cursor: pointer;
     background: #ff0073;

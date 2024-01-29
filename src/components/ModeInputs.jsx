@@ -13,6 +13,9 @@ const ModeInputs = ({
   windowWidth,
   setGoodAnswer,
   difficulty,
+  incrementStreak,
+  badAnswersChart,
+  setBadAnswersChart,
 }) => {
   const handleInputFocus = () => {
     if (windowWidth <= 770) setDisplay(false);
@@ -36,7 +39,6 @@ const ModeInputs = ({
   const [goodAnswers, setGoodAnswers] = useState(0);
   const [badAnswers, setBadAnswers] = useState(0);
   const [level, setLevel] = useState(1);
-
   const updateLives = async () => {
     await setLives((prevLives) => prevLives - 1);
   };
@@ -92,9 +94,9 @@ const ModeInputs = ({
     }
     if (points === 50) {
       setMessage("Udało się! Wygrana!");
+      handleWinning()
     }
-  }, [lives, points]);
-
+  }, [lives, points,]);
   useEffect(() => {
     generateNumbers();
   }, [level, minNumber1, maxNumber1, minNumber2, maxNumber2]);
@@ -110,7 +112,6 @@ const ModeInputs = ({
   };
 
   const generateNumbers = () => {
-    console.log(difficulty);
     let newNumber1,
       newNumber2,
       newOperation,
@@ -211,7 +212,11 @@ const ModeInputs = ({
       handleButtonClick();
     } else setUserInput(event.target.value);
   };
+  const handleWinning = () => {
+    incrementStreak()
+  };
 
+  
   return (
     <div className="inputs-container">
       {lost ? (
@@ -224,6 +229,8 @@ const ModeInputs = ({
                 setLives(3);
                 setLost(false);
                 setMessage("");
+                setBadAnswer(0);
+                setGoodAnswer(0);
               }
             }}
           >
@@ -232,14 +239,16 @@ const ModeInputs = ({
         </>
       ) : points === 50 ? (
         <>
+          
           <h1>Poprawne odpowiedzi: {goodAnswers}</h1>
           <h1>Błędne odpowiedzi: {badAnswers}</h1>
           <button
             className="play-again-btn"
             onClick={() => {
-              if (lives === 0) {
+              if (points === 50) {
                 setPoints(0);
                 setMessage("");
+                setBadAnswer(0);
               }
             }}
           >

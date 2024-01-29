@@ -1,6 +1,7 @@
 import ModeInputs from "./ModeInputs";
 import { useState } from "react";
 import BackButton from "./BackButton";
+import Streak from "./Streak";
 
 const Mode1 = ({
   setMessage,
@@ -9,12 +10,17 @@ const Mode1 = ({
   setDisplay,
   windowWidth,
   difficulty,
+  streak,
+  incrementStreak,
+  setBadAnswersChart,
+  badAnswersChart,
 }) => {
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState(49);
   return (
     <div className="mode-container">
       <div className="mode-top-bar">
         <BackButton toLink="/modes/difficulty" />
+        <Streak streak={streak} setMessage={setMessage} />
         <h1>{points} / 50</h1>
       </div>
       <ModeInputs
@@ -27,6 +33,10 @@ const Mode1 = ({
         setDisplay={setDisplay}
         windowWidth={windowWidth}
         difficulty={difficulty}
+        streak={streak}
+        incrementStreak={incrementStreak}
+        setBadAnswersChart={setBadAnswersChart}
+        badAnswersChart={badAnswersChart}
       />
     </div>
   );

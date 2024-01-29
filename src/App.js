@@ -17,9 +17,12 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [modePath, setModePath] = useState("");
   const [difficulty, setDifficulty] = useState(localStorage.getItem('diff') || "");
+  const [lastUpdate, setLastUpdate] = useState(localStorage.getItem('lastUpdate') || "");
+  const [streak, setStreak] = useState(localStorage.getItem('streak') || 0);
+  const [badAnswersChart, setBadAnswersChart] = useState(localStorage.getItem('badAnswersChart') || []);
+
 
   useEffect(() => {
-    console.log("wywoluje przed ")
     const storedModePath = localStorage.getItem('modePath')
     if (storedModePath) {
       setModePath(storedModePath)
@@ -28,7 +31,6 @@ function App() {
     if (storedDifficulty) {
       setDifficulty(storedDifficulty)
     }
-    console.log("wywoluje po ")
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -38,6 +40,35 @@ function App() {
     };
   }, []);
 
+
+
+  useEffect(() => {
+    const today = new Date()
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    if (lastUpdate !== yesterday.toLocaleDateString() && lastUpdate !== today.toLocaleDateString()) {
+      console.log(yesterday.toLocaleDateString())
+      console.log(today.toLocaleDateString())
+      setStreak(0);
+      localStorage.setItem('streak', 0);
+    }
+  }, [lastUpdate]);
+  const incrementStreak = () => {
+
+    const today = new Date().toLocaleDateString();
+    if (lastUpdate !== today) {
+      const newStreak = streak + 1;
+      setStreak(newStreak);
+      localStorage.setItem('streak', newStreak);
+      setLastUpdate(today)
+      localStorage.setItem('lastUpdate', today);
+    } else {
+      console.log('You can only increment once a day.');
+    }
+  };
+
+
+
   return (
     <div className="app">
       <div className="container">
@@ -45,7 +76,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Menu setMessage={setMessage} setMenu={setMenu} />} />
             <Route path="/modes" element={<Modes setMessage={setMessage} setMenu={setMenu} setModePath={setModePath} />} />
-            <Route path="/modes/difficulty" element={<SubModes setMessage={setMessage} setBadAnswer={setBadAnswer} setGoodAnswer={setGoodAnswer} modePath={modePath} setDifficulty={setDifficulty} />} />
+            <Route path="/modes/difficulty" element={<SubModes setMessage={setMessage} setBadAnswer={setBadAnswer} setGoodAnswer={setGoodAnswer} modePath={modePath} setDifficulty={setDifficulty} streak={streak} />} />
             <Route path="/modes/mode1" element={
               <Mode1
                 setMessage={setMessage}
@@ -54,6 +85,10 @@ function App() {
                 setDisplay={setDisplay}
                 windowWidth={windowWidth}
                 difficulty={difficulty}
+                streak={streak}
+                incrementStreak={incrementStreak}
+                setBadAnswersChart={setBadAnswersChart}
+                badAnswersChart={badAnswersChart}
               />}
             />
             <Route path="/modes/mode2" element={
